@@ -601,6 +601,7 @@ class RepoConfig:
     repo: str = ""
     commits: int = 3
     push_to: list[str] = field(default_factory=list)
+    include: str = ""
     exclude: str = ""
     enable: bool = True
 
@@ -612,6 +613,7 @@ class RepoConfig:
             repo=obj.string("repo", default="") or "",
             commits=obj.integer("commits", default=3, minimum=1) or 3,
             push_to=obj.string_list("push_to"),
+            include=obj.regex("include", default=""),
             exclude=obj.regex("exclude", default=""),
             enable=obj.boolean("enable", default=True),
         )
@@ -623,6 +625,7 @@ class RepoConfig:
             "repo": self.repo,
             "commits": self.commits,
             "push_to": list(self.push_to),
+            "include": self.include,
             "exclude": self.exclude,
         }
 
