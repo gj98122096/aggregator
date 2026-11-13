@@ -216,7 +216,7 @@ def aggregate(args: argparse.Namespace) -> None:
             logger.error(f"exit because cannot fetch any proxy node, group=[{k}]")
             continue
 
-                workspace = os.path.join(PATH, "clash")
+        workspace = os.path.join(PATH, "clash")
         filename = "config.yaml"
         starttime = time.time()
         nochecks = pipeline.check_alive_proxies(
