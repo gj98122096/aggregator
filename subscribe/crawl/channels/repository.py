@@ -73,7 +73,7 @@ def crawl_github_repo(repos: list[RepoConfig], ctx: CrawlContext) -> ChannelResu
         repo = utils.trim(item.repo)
         if not username or not repo or not item.push_to:
             continue
-        params.append([username, repo, item.push_to, max(item.commits, 1), item.exclude,item.include,  ctx.include_nodes])
+        params.append([username, repo, item.push_to, max(item.commits, 1), item.exclude, item.include, ctx.include_nodes])
 
     results = utils.multi_thread_run(func=crawl_single_repo, tasks=params, num_threads=ctx.num_threads)
     result = merge_results(results)
