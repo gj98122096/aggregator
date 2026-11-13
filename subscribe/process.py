@@ -211,10 +211,12 @@ def aggregate(args: argparse.Namespace) -> None:
 
         arrays = [datasets.get(x, []) for x in v]
         proxies = list(itertools.chain.from_iterable(arrays))
+        proxies = [p for p in proxies if isinstance(p, dict) and str(p.get("type", "")).lower() != "http"]
         if len(proxies) == 0:
             logger.error(f"exit because cannot fetch any proxy node, group=[{k}]")
             continue
 
+        
         workspace = os.path.join(PATH, "clash")
         filename = "config.yaml"
         starttime = time.time()
